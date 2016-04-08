@@ -3,7 +3,7 @@
 Install with [npm](https://www.npmjs.com/)
 
 ```sh
-$ npm academic-year --save
+$ npm install academic-year --save
 ```
 
 Install with [bower](http://bower.io/)
