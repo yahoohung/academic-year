@@ -12,6 +12,7 @@ var moment = require('moment');
 function AcademicYear(firstDate){
 
     this.year = (moment().dayOfYear() < moment(firstDate).dayOfYear()) ? -1 : 0;
+	
 	this.current = current;
 	this.next = next;
 	this.currentAbbr = currentAbbr;
@@ -21,19 +22,19 @@ function AcademicYear(firstDate){
 	this.name = name;
 	
 	function current(){
-		return moment().add(this.year, 'year').year();
+		return parseInt(moment().add(this.year, 'year').year());
 	}
 
 	function next(){
-		return parseInt(moment().add(this.year, 'year').year()) + 1;
+		return parseInt(moment().add(this.year, 'year').year() + 1);
 	}
 	
 	function currentAbbr(){
-		return moment().add(this.year, 'year').format('YY');
+		return parseInt(moment().add(this.year, 'year').format('YY'));
 	}	
 	
 	function nextAbbr(){
-		return parseInt(moment().add(this.year, 'year').format('YY')) + 1;
+		return parseInt(moment().add(this.year, 'year').format('YY') + 1);
 	}	
 	
 	function abbrName(d){
