@@ -1,25 +1,35 @@
 describe('Current year', function() {
-	var AcademicYear = require('./index.js');
-  	var schoolAcademicYear = new AcademicYear('2016-09-01');
-	console.log('Current academic year: ' + schoolAcademicYear.current());
+	
+    it('Current academic year', function() {
+		var AcademicYear = require('./index.js');
+  		var schoolAcademicYear = new AcademicYear('2016-09-01');
+		console.log(schoolAcademicYear.current());
+    });	
+
 });	
 
 describe('Next year', function() {
-	var AcademicYear = require('./index.js');
-  	var schoolAcademicYear = new AcademicYear('2016-09-01');
-	console.log('Next academic year: ' + schoolAcademicYear.next());
+	it('Next academic year', function() {
+		var AcademicYear = require('./index.js');
+  		var schoolAcademicYear = new AcademicYear('2016-09-01');
+		console.log(schoolAcademicYear.next());
+	});
 });	
 
 describe('Name', function() {
-	var AcademicYear = require('./index.js');
-  	var schoolAcademicYear = new AcademicYear('2016-09-01');
-	console.log('Name 1: ' + schoolAcademicYear.abbrName());
-	console.log('Name 2: ' + schoolAcademicYear.abbrName('/'));
+	it('Return abbr name', function() {
+		var AcademicYear = require('./index.js');
+  		var schoolAcademicYear = new AcademicYear('2016-09-01');
+		console.log('#1: ' + schoolAcademicYear.abbrName());
+		console.log('#2: ' + schoolAcademicYear.abbrName('/'));
+	});
 });	
 
 describe('Full name', function() {
-	var AcademicYear = require('./index.js');
-  	var schoolAcademicYear = new AcademicYear('2016-09-01');
-	console.log('Name 1: ' + schoolAcademicYear.name());
-	console.log('Name 2: ' + schoolAcademicYear.name(' - '));	
+	it('Return full name', function() {
+		var AcademicYear = require('./index.js');
+  		var schoolAcademicYear = new AcademicYear('2016-09-01');
+		console.log('#3: ' + schoolAcademicYear.name());
+		console.log('#4: ' + schoolAcademicYear.name('*'));	
+	});
 });	

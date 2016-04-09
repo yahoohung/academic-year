@@ -6,11 +6,6 @@ Install with [npm](https://www.npmjs.com/)
 $ npm install academic-year --save
 ```
 
-Install with [bower](http://bower.io/)
-
-```sh
-$ bower install academic-year --save
-```
 
 ## Initial
 
