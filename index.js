@@ -9,9 +9,9 @@
 
 var moment = require('moment');
 
-function AcademicYear(firstDay){
+function AcademicYear(firstDate){
 
-    this.year = (moment().dayOfYear() < moment(firstDay).dayOfYear()) ? -1 : 0;
+    this.year = (moment().dayOfYear() < moment(firstDate).dayOfYear()) ? -1 : 0;
 	this.current = current;
 	this.next = next;
 	this.currentAbbr = currentAbbr;

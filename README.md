@@ -41,12 +41,12 @@ console.log(schoolAcademicYear.nextAbbr());
 console.log('Name 1: ' + schoolAcademicYear.name());
 console.log('Name 2: ' + schoolAcademicYear.name('/'));	
 console.log('Name 3: ' + schoolAcademicYear.abbrName());
-console.log('Name 4: ' + schoolAcademicYear.abbrName(' - '));	
+console.log('Name 4: ' + schoolAcademicYear.abbrName('*'));	
 
 // Name 1: 2015-2016
 // Name 2: 2015/2016
 // Name 3: 2015-16
-// Name 4: 2015 - 2016
+// Name 4: 2015*16
 ```
 
 
