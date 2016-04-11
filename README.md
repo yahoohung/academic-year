@@ -33,11 +33,15 @@ console.log(schoolAcademicYear.nextAbbr());
 
 **Academic year name**
 ```js
+console.log('Id 1: ' + schoolAcademicYear.id());
+console.log('Id 2: ' + schoolAcademicYear.id(''));	
 console.log('Name 1: ' + schoolAcademicYear.name());
 console.log('Name 2: ' + schoolAcademicYear.name('/'));	
 console.log('Name 3: ' + schoolAcademicYear.abbrName());
 console.log('Name 4: ' + schoolAcademicYear.abbrName('*'));	
 
+// 15-16
+// 1516
 // Name 1: 2015-2016
 // Name 2: 2015/2016
 // Name 3: 2015-16

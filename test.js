@@ -33,3 +33,12 @@ describe('Full name', function() {
 		console.log('#4: ' + schoolAcademicYear.name('*'));	
 	});
 });	
+
+describe('id', function() {
+	it('Return full name', function() {
+		var AcademicYear = require('./index.js');
+  		var schoolAcademicYear = new AcademicYear('2016-09-01');
+		console.log('#5: ' + schoolAcademicYear.id());
+		console.log('#6: ' + schoolAcademicYear.id(''));	
+	});
+});	

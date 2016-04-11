@@ -1,6 +1,6 @@
 {
   "name": "academic-year",
-  "version": "1.0.67",
+  "version": "1.0.70",
   "description": "A small library providing utility methods to calculate academic year",
   "dependencies": {
     "moment": "^2.12.0"

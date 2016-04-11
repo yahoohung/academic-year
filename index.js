@@ -21,12 +21,14 @@ function AcademicYear(firstDate){
 	this.abbrName = abbrName;
 	this.name = name;
 	
+	this.id = id;
+	
 	function current(){
 		return parseInt(moment().add(this.year, 'year').year());
 	}
 
 	function next(){
-		return parseInt(moment().add(this.year, 'year').year() + 1);
+		return parseInt(moment().add(this.year, 'year').year()) + 1;
 	}
 	
 	function currentAbbr(){
@@ -34,7 +36,7 @@ function AcademicYear(firstDate){
 	}	
 	
 	function nextAbbr(){
-		return parseInt(moment().add(this.year, 'year').format('YY') + 1);
+		return parseInt(moment().add(this.year, 'year').format('YY')) + 1;
 	}	
 	
 	function abbrName(d){
@@ -46,7 +48,14 @@ function AcademicYear(firstDate){
 		var delimiter = (typeof(d) != "undefined") ? d : '-';
 		return this.current() + delimiter + this.next();		
 	}
+	
+	function id(d){
+		var delimiter = (typeof(d) != "undefined") ? d : '-';
+		return this.currentAbbr() + delimiter + this.nextAbbr();		
+	}
+		
 }
+	
 
 /**
  * Exports academicYear.
