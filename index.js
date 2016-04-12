@@ -13,45 +13,45 @@ function AcademicYear(firstDate){
 
     this.year = (moment().dayOfYear() < moment(firstDate).dayOfYear()) ? -1 : 0;
 	
-	this.current = current;
-	this.next = next;
-	this.currentAbbr = currentAbbr;
-	this.nextAbbr = nextAbbr;
+	this.getCurrent = getCurrent;
+	this.getNext = getNext;
+	this.getCurrentAbbr = getCurrentAbbr;
+	this.getNextAbbr = getNextAbbr;
 	
-	this.abbrName = abbrName;
-	this.name = name;
+	this.getAbbrName = getAbbrName;
+	this.getName = getName;
 	
-	this.id = id;
+	this.getId = getId;
 	
-	function current(){
+	function getCurrent(){
 		return parseInt(moment().add(this.year, 'year').year());
 	}
 
-	function next(){
+	function getNext(){
 		return parseInt(moment().add(this.year, 'year').year()) + 1;
 	}
 	
-	function currentAbbr(){
+	function getCurrentAbbr(){
 		return parseInt(moment().add(this.year, 'year').format('YY'));
 	}	
 	
-	function nextAbbr(){
+	function getNextAbbr(){
 		return parseInt(moment().add(this.year, 'year').format('YY')) + 1;
 	}	
 	
-	function abbrName(d){
+	function getAbbrName(d){
 		var delimiter = (typeof(d) != "undefined") ? d : '-';
-		return this.current() + delimiter + this.nextAbbr();
+		return this.getCurrent() + delimiter + this.getNextAbbr();
 	}
 	
-	function name(d){
+	function getName(d){
 		var delimiter = (typeof(d) != "undefined") ? d : '-';
-		return this.current() + delimiter + this.next();		
+		return this.getCurrent() + delimiter + this.getNext();		
 	}
 	
-	function id(d){
+	function getId(d){
 		var delimiter = (typeof(d) != "undefined") ? d : '-';
-		return this.currentAbbr() + delimiter + this.nextAbbr();		
+		return this.getCurrentAbbr() + delimiter + this.getNextAbbr();		
 	}
 		
 }
