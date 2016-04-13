@@ -16,10 +16,8 @@ Set the first day of academic year, requires [ISO 8601](https://en.wikipedia.org
 
 ```js
 var AcademicYear = require('academic-year');
-var schoolAcademicYear = new AcademicYear('2016-09-01'); 
-
-// or put last day of school to the 2nd parameter if you need to use validate function
-var schoolAcademicYear = new AcademicYear('2016-09-01', '2017-06-30'); 
+// new AcademicYear(FIRSTDATE, ENDDATE)
+var schoolAcademicYear = new AcademicYear('2015-09-01', '2016-06-30'); 
 ```
 
 ## Usage
@@ -53,15 +51,6 @@ console.log('Name 4: ' + schoolAcademicYear.getAbbrName('*'));
 // Name 4: 2015*16
 ```
 
-**Validate date** - Check if a date within in range
-```js
-var schoolAcademicYear = new AcademicYear('2016-09-01', '2017-06-30'); 
-console.log('validate 1: ' + schoolAcademicYear.validate('2017-07-31'));
-console.log('validate 2: ' + schoolAcademicYear.validate('2016-12-25'));
-
-// false
-// true
-```
 
 **Total school days**
 ```js

@@ -8,88 +8,72 @@
 
 var moment = require('moment');
 
-function AcademicYear(firstDate, endDate){
-	if (this instanceof AcademicYear) {
-		// inital
-		this.firstDate = (typeof(firstDate) !== "undefined") ? moment(firstDate) : '';
-		this.endDate = (typeof(firstDate) !== "undefined") ? moment(endDate) : '';
+function AcademicYear(firstDate, endDate, today){
+	
+	if (!(this instanceof AcademicYear)) {
+		throw new Error("AcademicYear needs to be called with the new object");
+	}
+	
+	if((typeof(firstDate) === "undefined")) throw new Error('firstDate is required.');
+	else if((typeof(endDate) === "undefined")) throw new Error("endDate is required.");
+	else if(moment(endDate).unix() < moment(firstDate).unix()) throw new Error("enddate must be after firstDate.");
+	else if((typeof(today) !== "undefined") && (moment(today).unix() < moment(this.firstDate).unix() || moment(today).unix() > moment(this.endDate).unix())) 
+		throw new Error("Custom day must be in range");	
+	
+	this.firstDate = moment(firstDate);
+	this.endDate = moment(endDate);
 
-		// checker
-		this.year = findYear;
+	// methods
+	this.getId = getId;
+	this.getCurrent = getCurrent;
+	this.getCurrentAbbr = getCurrentAbbr;
+	this.getName = getName;
+	this.getAbbrName = getAbbrName;		
+	this.getNext = getNext;		
+	this.getNextAbbr = getNextAbbr;
 
-		// methods
-		this.getId = getId;
-		this.getCurrent = getCurrent;
-		this.getCurrentAbbr = getCurrentAbbr;
-		this.getName = getName;
-		this.getAbbrName = getAbbrName;		
-		this.getNext = getNext;		
-		this.getNextAbbr = getNextAbbr;
-		
-		// extra fucntions
+	// extra fucntions
+	this.getSchoolDays = getSchoolDays;
 
-		this.validate = validate;
-		this.getSchoolDays = getSchoolDays;
-		
-		function getId(d){
-			var delimiter = (typeof(d) !== "undefined") ? d : '-';
-			return this.getCurrentAbbr() + delimiter + this.getNextAbbr();		
-		}				
-		
-		function findYear(){
-			if(firstDate === '') throw new Error("firstDate is required.");
-			
-			if(endDate !== '' && moment(this.endDate).unix() <= moment(this.firstDate).unix())
-				throw new Error("firstDate must be before enddate");
-			
-			return (moment().dayOfYear() < moment(this.firstDate).dayOfYear()) ? -1 : 0;			
-		}
+	function getId(d){
+		var delimiter = (typeof(d) !== "undefined") ? d : '-';
+		return this.getCurrentAbbr() + delimiter + this.getNextAbbr();		
+	}				
 
-		function getCurrent(){
-			return parseInt(moment().add(this.year, 'year').year());
-		}
-		
-		function getCurrentAbbr(){
-			return parseInt(moment().add(this.year, 'year').format('YY'));
-		}			
-		
-		function getName(d){
-			var delimiter = (typeof(d) !== "undefined") ? d : '-';
-			return this.getCurrent() + delimiter + this.getNext();		
-		}
-		
-		function getAbbrName(d){
-			var delimiter = (typeof(d) !== "undefined") ? d : '-';
-			return this.getCurrent() + delimiter + this.getNextAbbr();
-		}
 
-		function getNext(){
-			return parseInt(moment().add(this.year, 'year').year()) + 1;
-		}
+	function getCurrent(){
+		return parseInt(moment(this.firstDate).year());
+	}
 
-		function getNextAbbr(){
-			return parseInt(moment().add(this.year, 'year').format('YY')) + 1;
-		}	
+	function getCurrentAbbr(){
+		return parseInt(moment(this.firstDate).format('YY'));
+	}			
 
-		function validate(date){
-			if(endDate === '') throw new Error("endDate is required.");
-			// date not correct
-			return (moment(date).isValid() 
-			   && this.endDate !== '' 
-			   && (moment(date).unix() >= moment(this.firstDate).unix() 
-				   && moment(date).unix() <= moment(this.endDate).unix()));
-		}
-		
-		function getSchoolDays(oneDayAdded){
-			if(endDate === '') throw new Error("endDate is required.");
-			
-			oneDayAdded = ((typeof(oneDayAdded) !== "boolean")) ? true : oneDayAdded;
-			
-			return parseInt(this.endDate.diff(this.firstDate, 'days')) + ((oneDayAdded) ? 1 : 0);
-		}
-	}else{
-		return arguments[0] instanceof AcademicYear;
-	}		
+	function getName(d){
+		var delimiter = (typeof(d) !== "undefined") ? d : '-';
+		return this.getCurrent() + delimiter + this.getNext();		
+	}
+
+	function getAbbrName(d){
+		var delimiter = (typeof(d) !== "undefined") ? d : '-';
+		return this.getCurrent() + delimiter + this.getNextAbbr();
+	}
+
+	function getNext(){
+		return parseInt(moment(this.endDate).year());
+	}
+
+	function getNextAbbr(){
+		return parseInt(moment(this.endDate).format('YY'));
+	}	
+
+	function getSchoolDays(oneDayAdded){
+		if(endDate === '') throw new Error("endDate is required.");
+
+		oneDayAdded = ((typeof(oneDayAdded) !== "boolean")) ? true : oneDayAdded;
+
+		return parseInt(this.endDate.diff(this.firstDate, 'days')) + ((oneDayAdded) ? 1 : 0);
+	}	
 }
 
 /**
