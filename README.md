@@ -20,10 +20,10 @@ var schoolAcademicYear = new AcademicYear('2016-09-01');
 ## Usage
 **Academic year detail**
 ```js
-console.log(schoolAcademicYear.current());
-console.log(schoolAcademicYear.currentAbbr());
-console.log(schoolAcademicYear.next());
-console.log(schoolAcademicYear.nextAbbr());
+console.log(schoolAcademicYear.getCurrent());
+console.log(schoolAcademicYear.getCurrentAbbr());
+console.log(schoolAcademicYear.getNext());
+console.log(schoolAcademicYear.getNextAbbr());
 
 // 2015
 // 15
@@ -33,12 +33,12 @@ console.log(schoolAcademicYear.nextAbbr());
 
 **Academic year name**
 ```js
-console.log('Id 1: ' + schoolAcademicYear.id());
-console.log('Id 2: ' + schoolAcademicYear.id(''));	
-console.log('Name 1: ' + schoolAcademicYear.name());
-console.log('Name 2: ' + schoolAcademicYear.name('/'));	
-console.log('Name 3: ' + schoolAcademicYear.abbrName());
-console.log('Name 4: ' + schoolAcademicYear.abbrName('*'));	
+console.log('Id 1: ' + schoolAcademicYear.getId());
+console.log('Id 2: ' + schoolAcademicYear.getId(''));	
+console.log('Name 1: ' + schoolAcademicYear.getName());
+console.log('Name 2: ' + schoolAcademicYear.getName('/'));	
+console.log('Name 3: ' + schoolAcademicYear.getAbbrName());
+console.log('Name 4: ' + schoolAcademicYear.getAbbrName('*'));	
 
 // 15-16
 // 1516
