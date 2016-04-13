@@ -1,3 +1,5 @@
+[![NPM version][npm-version-image]][npm-url] [![NPM downloads][npm-downloads-image]][npm-url] [![MIT License][license-image]][license-url]
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/)
@@ -34,8 +36,7 @@ console.log(schoolAcademicYear.getNextAbbr());
 // 16
 ```
 
-**Academic year name**
-Return different academic year format
+**Academic year name** - Return different academic year format
 ```js
 console.log('Id 1: ' + schoolAcademicYear.getId());
 console.log('Id 2: ' + schoolAcademicYear.getId(''));	
@@ -52,8 +53,7 @@ console.log('Name 4: ' + schoolAcademicYear.getAbbrName('*'));
 // Name 4: 2015*16
 ```
 
-**Validate date**
-Check if a date within in range
+**Validate date** - Check if a date within in range
 ```js
 var schoolAcademicYear = new AcademicYear('2016-09-01', '2017-06-30'); 
 console.log('validate 1: ' + schoolAcademicYear.validate('2017-07-31'));
@@ -62,6 +62,17 @@ console.log('validate 2: ' + schoolAcademicYear.validate('2016-12-25'));
 // false
 // true
 ```
+
+**Total school days**
+```js
+var schoolAcademicYear = new AcademicYear('2016-09-01', '2017-06-30'); 
+console.log('School days (Include end date): ' + schoolAcademicYear.getSchoolDays());
+console.log('School days (Exclude end date)' + schoolAcademicYear.getSchoolDays(false));
+
+// 334
+// 333
+```
+
 
 
 

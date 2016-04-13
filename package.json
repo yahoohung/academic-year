@@ -1,6 +1,6 @@
 {
   "name": "academic-year",
-  "version": "2.1.0",
+  "version": "2.2.1",
   "description": "A small library providing utility methods to display academic year detail",
   "dependencies": {
     "moment": "^2.12.0"

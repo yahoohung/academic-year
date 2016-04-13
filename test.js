@@ -60,3 +60,12 @@ describe('V2 - validate fail test', function() {
 	if(!validateResult) it('Passed', function(){});
 	else it('Faild', function(){});
 });	
+
+describe('V2 - school days test', function() {
+	it('return total school days, ', function() {
+		var AcademicYear = require('./index.js');
+  		var schoolAcademicYear = new AcademicYear('2016-09-01', '2017-07-31');
+		console.log('#v2 Total school days(Include end date): ' + schoolAcademicYear.getSchoolDays());
+		console.log('#v2 Total school days(Exclude end date): ' + schoolAcademicYear.getSchoolDays(false));		
+	});
+});	
