@@ -1,7 +1,7 @@
 {
   "name": "academic-year",
-  "version": "2.0.1",
-  "description": "A small library providing utility methods to calculate academic year",
+  "version": "2.1.0",
+  "description": "A small library providing utility methods to display academic year detail",
   "dependencies": {
     "moment": "^2.12.0"
   },	
@@ -16,7 +16,10 @@
   "keywords": [
     "academic",
     "year",
-    "school"
+    "school",
+	"education",
+	"date",
+	"validate"
   ],
   "author": "Marshall Chan <yahoohung@gmail.com> https://about.me/m.chan",
   "license": "MIT",

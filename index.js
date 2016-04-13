@@ -9,49 +9,76 @@
 
 var moment = require('moment');
 
-function AcademicYear(firstDate){
+function AcademicYear(firstDate, endDate){
+	if (this instanceof AcademicYear) {
+		// inital
+		this.firstDate = (typeof(firstDate) != "undefined") ? firstDate  : '';
+		this.endDate = (typeof(firstDate) != "undefined") ? endDate : '';
 
-    this.year = (moment().dayOfYear() < moment(firstDate).dayOfYear()) ? -1 : 0;
-	
-	this.getCurrent = getCurrent;
-	this.getNext = getNext;
-	this.getCurrentAbbr = getCurrentAbbr;
-	this.getNextAbbr = getNextAbbr;
-	
-	this.getAbbrName = getAbbrName;
-	this.getName = getName;
-	
-	this.getId = getId;
-	
-	function getCurrent(){
-		return parseInt(moment().add(this.year, 'year').year());
-	}
+		// checker
+		this.year = findYear;
 
-	function getNext(){
-		return parseInt(moment().add(this.year, 'year').year()) + 1;
-	}
-	
-	function getCurrentAbbr(){
-		return parseInt(moment().add(this.year, 'year').format('YY'));
-	}	
-	
-	function getNextAbbr(){
-		return parseInt(moment().add(this.year, 'year').format('YY')) + 1;
-	}	
-	
-	function getAbbrName(d){
-		var delimiter = (typeof(d) != "undefined") ? d : '-';
-		return this.getCurrent() + delimiter + this.getNextAbbr();
-	}
-	
-	function getName(d){
-		var delimiter = (typeof(d) != "undefined") ? d : '-';
-		return this.getCurrent() + delimiter + this.getNext();		
-	}
-	
-	function getId(d){
-		var delimiter = (typeof(d) != "undefined") ? d : '-';
-		return this.getCurrentAbbr() + delimiter + this.getNextAbbr();		
+		// methods
+		this.getId = getId;
+		this.getCurrent = getCurrent;
+		this.getCurrentAbbr = getCurrentAbbr;
+		this.getName = getName;
+		this.getAbbrName = getAbbrName;		
+		this.getNext = getNext;		
+		this.getNextAbbr = getNextAbbr;
+		
+		// extra fucntions
+
+		this.validate = validate;
+		
+		function getId(d){
+			var delimiter = (typeof(d) != "undefined") ? d : '-';
+			return this.getCurrentAbbr() + delimiter + this.getNextAbbr();		
+		}		
+				
+		
+		function findYear(){
+			if(firstDate === '') throw new Error("firstDate is required.");
+			
+			return (moment().dayOfYear() < moment(this.firstDate).dayOfYear()) ? -1 : 0;			
+		}
+
+
+		function getCurrent(){
+			return parseInt(moment().add(this.year, 'year').year());
+		}
+		
+		function getCurrentAbbr(){
+			return parseInt(moment().add(this.year, 'year').format('YY'));
+		}			
+		
+		function getName(d){
+			var delimiter = (typeof(d) != "undefined") ? d : '-';
+			return this.getCurrent() + delimiter + this.getNext();		
+		}
+		
+		function getAbbrName(d){
+			var delimiter = (typeof(d) != "undefined") ? d : '-';
+			return this.getCurrent() + delimiter + this.getNextAbbr();
+		}
+
+		function getNext(){
+			return parseInt(moment().add(this.year, 'year').year()) + 1;
+		}
+
+		function getNextAbbr(){
+			return parseInt(moment().add(this.year, 'year').format('YY')) + 1;
+		}	
+
+		function validate(date){
+			// date not correct
+			return (moment(date).isValid() 
+			   && this.endDate !== '' 
+			   && (moment(date).unix() >= moment(this.firstDate).unix() 
+				   && moment(date).unix() <= moment(this.endDate).unix()));
+		}
+	}else{
+		return arguments[0] instanceof AcademicYear;
 	}
 		
 }
